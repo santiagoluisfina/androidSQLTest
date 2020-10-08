@@ -31,6 +31,10 @@
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/app/src/main/assets/DB_from_1_to_2.sql" connection-id="virtual-sqlite-connection" session-id="MAIN" current-schema="" />
+    <mapping file-url="file://$PROJECT_DIR$/app/src/main/assets/DB_downgrade_2_to_1.sql" connection-id="virtual-sqlite-connection" session-id="MAIN" current-schema="" />
+  </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
     <execution-history>

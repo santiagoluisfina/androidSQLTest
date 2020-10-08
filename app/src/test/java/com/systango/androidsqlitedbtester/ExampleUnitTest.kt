@@ -10,6 +10,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
 import java.io.IOException
 
 /**
@@ -25,7 +26,8 @@ class ExampleUnitTest {
     fun createDB() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val sqLiteHelper = dbSQLiteHelper(context)
-        db = sqLiteHelper.writableDatabase
+        db = sqLiteHelper.getReadableDatabase()
+        Globals.DBConnection = db
     }
 
     @After
@@ -36,23 +38,9 @@ class ExampleUnitTest {
 
     @Test
     fun obt_ok() {
-        val libro = getLibro("2")
+        AuxDBQueries().verJoel()
+        AuxDBQueries().testUpdate()
+
         assertEquals(1, 1)
-    }
-
-    private fun getLibro(idLibro: String?): Libro {
-        val table = "TBL_LIBROS"
-        val columnsToReturn = arrayOf("ID_LIBRO", "LIBRO", "ABREVIATURA")
-        val selection = "id_libro = ?"
-        val dbCursor = db.query(table, columnsToReturn, selection, arrayOf(idLibro), null, null, null)
-        val libro = Libro()
-        if(dbCursor.moveToFirst()){
-            libro.idLibro = dbCursor.getString(0)
-            libro.libro = dbCursor.getString(1)
-            libro.abrev = dbCursor.getString(2)
-        }
-        dbCursor.close()
-
-        return libro
     }
 }
